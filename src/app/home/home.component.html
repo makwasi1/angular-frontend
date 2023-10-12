@@ -6,8 +6,7 @@
       <span class="example-fill-remaining-space"></span>
       <span class="align-center"></span>
       <span class="example-spacer"></span>
-      <!-- <a mat-button routerLink="/login" routerLinkActive="active">Transactions</a>
-      <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Profile</a> -->
+      <a mat-button class="example-spacer" routerLink="/transactions" routerLinkActive="active">Transactions</a>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
           <mat-icon>dialpad</mat-icon>
@@ -28,12 +27,12 @@
   <!-- a card to show the customer balance -->
   <mat-card class="balance-card">
     <mat-card-header>
-      <mat-card-title>Actions Balance</mat-card-title>
+      <mat-card-title>Account Balance</mat-card-title>
       <mat-card-subtitle class="balance">{{balance | currency}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions align="end">
-      <button mat-raised-button class="deposit-button" mat-button (click)="openDialog()">Deposit</button>
-      <button mat-raised-button class="withdrawal-button" mat-button (click)="openDialog()">Withdraw</button>
+      <button mat-raised-button class="deposit-button" mat-button (click)="openDialog('deposit')">Deposit</button>
+      <button mat-raised-button class="withdrawal-button" mat-button (click)="openDialog('withdraw')">Withdraw</button>
     </mat-card-actions>
   </mat-card>
 

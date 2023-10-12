@@ -28,22 +28,22 @@ export class AccountsService {
 
   //deposit money for customer
 
-  depositMoney(customerId: string, amount: number): Promise<any> {
-    const url = `${this.baseurl}/deposit`;
+  depositMoney(customerId: string, balance: number): Promise<any> {
+    const url = `${this.baseurl}/deposit/${customerId}`;
     const authToken = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${authToken}` };
-    const body = { customerId, amount };
+    const body = { balance };
     return lastValueFrom(this.http.post<any>(url, body, { headers }).pipe(
       catchError(this.authService.errorHandler),
     ));
   }
 
   //withdraw money for customer
-  withdrawMoney(customerId: string, amount: number): Promise<any> {
-    const url = `${this.baseurl}/withdraw`;
+  withdrawMoney(customerId: string, balance: number): Promise<any> {
+    const url = `${this.baseurl}/withdraw/${customerId}`;
     const authToken = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${authToken}` };
-    const body = { customerId, amount };
+    const body = { balance };
     return lastValueFrom(this.http.post<any>(url, body, { headers }).pipe(
       catchError(this.authService.errorHandler),
     ));

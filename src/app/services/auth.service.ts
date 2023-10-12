@@ -21,7 +21,6 @@ export class AuthService {
   login(email: string, password: string) : Promise<any> {
     const credentials = { email, password };
     const url = `${this.baseurl}/signin`;
-
     //make post login request and return the token
     return lastValueFrom(this.http.post<any>(url, credentials).pipe(
       catchError(this.errorHandler),

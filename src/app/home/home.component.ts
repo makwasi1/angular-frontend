@@ -26,7 +26,6 @@ customerId: string = "";
 amount: any = 0;
 
 constructor(
-  private authService: AuthService,
   private accoutService: AccountsService,
   public dialog: MatDialog
 ) { }
@@ -71,7 +70,7 @@ withdrawMoney(): void {
     });
 }
 
-openDialog() {
+openDialog(transactionType: string): void {
   const dialogRef = this.dialog.open(DepositDialog, {
     data: {customerId: this.customerId, amount: this.amount},
   });
@@ -79,7 +78,12 @@ openDialog() {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     this.amount = result;
-    console.log(this.amount);
+    if (transactionType === 'deposit') {
+      this.depositMoney();
+    } else if (transactionType === 'withdraw') {
+      this.withdrawMoney();
+    }
+    
   });}
 
 
