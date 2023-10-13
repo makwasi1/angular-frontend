@@ -14,7 +14,7 @@ import { TransactionData } from '../models/Transaction';
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']
 })
-export class TransactionsComponent implements OnInit,  AfterViewInit {
+export class TransactionsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'customerId', 'amount', 'transactionType'];
   dataSource!: MatTableDataSource<TransactionData>;
 
@@ -32,12 +32,15 @@ export class TransactionsComponent implements OnInit,  AfterViewInit {
   ngOnInit(): void {
     const customerId = localStorage.getItem('customerId') || '';
     this.getCustomerMiniStatement(customerId, 10);
+    
   
   }
 
 async getCustomerMiniStatement(customerId: string, limit: number): Promise<TransactionData[]> {
   const transactions = await this.transactionsService.getCustomerMiniStatement(customerId, limit);
   this.dataSource = new MatTableDataSource(transactions);
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
   return transactions;
 }
 
