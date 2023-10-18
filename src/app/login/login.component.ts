@@ -27,11 +27,11 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
-  async loginAsync(): Promise<void> {
+   async loginAsync(): Promise<void> {
     if (!this.form.valid) return;
 
     const user = { ...this.form.value };
-    const result  = await  await this.authService.handlePromises(this.authService.login(user.email, user.password));
+    const result  =  await this.authService.handlePromises(this.authService.login(user.email, user.password));
     // const tokenString = result && result[0].token
 
     if (!result) {
